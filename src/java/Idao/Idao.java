@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  *
- * @author alsorc
+ * @author elDantru99
  */
 public interface Idao<T,V> {
     boolean inserOne(T model);

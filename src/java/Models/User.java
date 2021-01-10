@@ -7,11 +7,12 @@ import javax.persistence.Table;
 
 /**
  *
- * @author alsorc
+ * @author elDantru99
  */
 @Entity
 @Table(name = "usuarios")
 public class User {
+    
     @Id
     @Column(name = "clave")
     private int id;

@@ -2,7 +2,7 @@ package Dao;
 
 import Connection.HibernateUtil;
 import Idao.Idao;
-import Models.Department;
+import Models.MyUser;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Query;
@@ -11,22 +11,20 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author alsorc
+ * @author elDantru99
  */
-public class DepartmentsDao implements Idao<Department, Integer>{
-
+public class MyUserDao implements Idao<MyUser, Long>{
+    
     private SessionFactory sessionFactory;
     private Session session;
-    
-    public DepartmentsDao() {
+
+    public MyUserDao() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
-    
-    
 
     @Override
-    public boolean inserOne(Department model) {
-        Serializable save = null;
+    public boolean inserOne(MyUser model) {
+         Serializable save = null;
         session = sessionFactory.openSession();
         session.beginTransaction();
         try{
@@ -42,18 +40,18 @@ public class DepartmentsDao implements Idao<Department, Integer>{
     }
 
     @Override
-    public boolean deleteOne(Integer idModel) {
+    public boolean deleteOne(Long idModel) {
         session = sessionFactory.openSession();
         session.beginTransaction();
-        session.delete(new Department(idModel));
+        session.delete(new MyUser(idModel));
         session.getTransaction().commit();
         session.close();
         return true;
     }
 
     @Override
-    public boolean updateOne(Department model) {
-       session = sessionFactory.openSession();
+    public boolean updateOne(MyUser model) {
+         session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(model);
         session.getTransaction().commit();
@@ -62,22 +60,26 @@ public class DepartmentsDao implements Idao<Department, Integer>{
     }
 
     @Override
-    public Department readOne(Integer idModel) {
-        session = sessionFactory.openSession();
+    public MyUser readOne(Long idModel) {
+         session = sessionFactory.openSession();
         session.beginTransaction();
-        Department data = (Department) session.get(Department.class, idModel);
+        MyUser data = (MyUser) session.get(MyUser.class, idModel);
         session.getTransaction().commit();
         session.close();
         return data;
     }
 
     @Override
-    public List<Department> readAllRecords() {
-        session = sessionFactory.openSession();
-        Query query = session.createQuery("from Department");
+    public List<MyUser> readAllRecords() {
+       session = sessionFactory.openSession();
+        Query query = session.createQuery("from MyUser");
         List data = query.list();
         session.close();
         return data;
     }
+    
+    
+
+    
     
 }

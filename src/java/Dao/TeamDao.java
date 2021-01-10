@@ -2,7 +2,7 @@ package Dao;
 
 import Connection.HibernateUtil;
 import Idao.Idao;
-import Models.Department;
+import Models.Team;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Query;
@@ -11,21 +11,19 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author alsorc
+ * @author elDantru99
  */
-public class DepartmentsDao implements Idao<Department, Integer>{
-
+public class TeamDao implements Idao<Team,Long>{
+    
     private SessionFactory sessionFactory;
     private Session session;
-    
-    public DepartmentsDao() {
+
+    public TeamDao() {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
-    
-    
 
     @Override
-    public boolean inserOne(Department model) {
+    public boolean inserOne(Team model) {
         Serializable save = null;
         session = sessionFactory.openSession();
         session.beginTransaction();
@@ -42,18 +40,18 @@ public class DepartmentsDao implements Idao<Department, Integer>{
     }
 
     @Override
-    public boolean deleteOne(Integer idModel) {
+    public boolean deleteOne(Long idModel) {
         session = sessionFactory.openSession();
         session.beginTransaction();
-        session.delete(new Department(idModel));
+        session.delete(new Team(idModel));
         session.getTransaction().commit();
         session.close();
         return true;
     }
 
     @Override
-    public boolean updateOne(Department model) {
-       session = sessionFactory.openSession();
+    public boolean updateOne(Team model) {
+        session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(model);
         session.getTransaction().commit();
@@ -62,22 +60,26 @@ public class DepartmentsDao implements Idao<Department, Integer>{
     }
 
     @Override
-    public Department readOne(Integer idModel) {
+    public Team readOne(Long idModel) {
         session = sessionFactory.openSession();
         session.beginTransaction();
-        Department data = (Department) session.get(Department.class, idModel);
+        Team data = (Team) session.get(Team.class, idModel);
         session.getTransaction().commit();
         session.close();
         return data;
     }
 
     @Override
-    public List<Department> readAllRecords() {
+    public List<Team> readAllRecords() {
         session = sessionFactory.openSession();
-        Query query = session.createQuery("from Department");
+        Query query = session.createQuery("from Team");
         List data = query.list();
         session.close();
         return data;
     }
+    
+    
+    
+    
     
 }

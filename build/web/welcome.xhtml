@@ -33,18 +33,24 @@
             h1{
                 text-align: center;
             }
+            #btnDelete{
+
+            }
+            #btnUpdate{
+
+            }
         </style>
     </h:head>
 
     <h:body>  
         <h:form>  
             <p:menubar>  
-                <p:submenu label="Acciones" icon="ui-icon-document">  
-                    <p:menuitem value="Salir" url="index.xhtml"/>  
+                <p:submenu label="Opciones" icon="ui-icon-document">  
+                    <p:menuitem value="Salir" url="index.xhtml"/>
                 </p:submenu>  
                 <p:submenu label="Catálogos" icon="ui-icon-pencil">  
-                    <p:menuitem value="Usuarios" url="welcome.xhtml" icon="ui-icon-arrowreturnthick-1-w" />  
-                    <p:menuitem value="Departamentos" url="viewDepartments.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
+                    <p:menuitem value="Usuarios" url="welcome.xhtml" icon="ui-icon-arrowreturnthick-1-e"/>  
+                    <p:menuitem value="Equipos" url="viewDepartments.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
                 </p:submenu>  
             </p:menubar>  
         </h:form>  
@@ -54,34 +60,42 @@
     <div id="mainForm">
 
         <div id="left">
-            <h:form>
-                <div id="createUser">
-                    <h1>Registrar usuario</h1>
-                    <span class="ui-float-label">
-                        <p:inputText id="id" value="#{userBean.user.id}" />
-                        <p:outputLabel for="@previous" value="Id"/>
-                    </span>
+            <h:form id="formUser">
+                <h1>Registrar usuario</h1>
 
-                    <span class="ui-float-label">
-                        <p:inputText id="name" value="#{userBean.user.name}" />
-                        <p:outputLabel for="@previous" value="Nombre"/>
-                    </span>
+                <span class="ui-float-label">
+                    <p:inputText id="id" value="#{myUserBean.myUser.id}" disabled="true" />
+                    <p:outputLabel for="@previous" value="Id"/>
+                </span>
 
-                    <span class="ui-float-label">
-                        <p:inputText id="cellPhone" value="#{userBean.user.cellPhone}" />
-                        <p:outputLabel for="@previous" value="Celular"/>
-                    </span>
+                <span class="ui-float-label">
+                    <p:inputText id="name" value="#{myUserBean.myUser.name}" />
+                    <p:outputLabel for="@previous" value="Nombre"/>
+                </span>
 
-                    <p:commandButton value="Guardar" id="ajax" update=":mForm:uList" style="text-align: center; height: 1.9rem;" action="#{userBean.saveData()}" styleClass="ui-priority-primary" />
+                <span class="ui-float-label">
+                    <p:inputMask id="cellPhone" value="#{myUserBean.myUser.email}"/>
+                    <p:outputLabel for="@previous" value="Correo"/>
+                </span>
 
-                </div>
+                <span class="ui-float-label">
+                    <p:password id="nonFeedback" value="#{myUserBean.myUser.password}" />
+                    <p:outputLabel for="@previous" value="Contraseña"/>
+                </span>
+
+                <p:commandButton value="Guardar" 
+                                 id="ajax" 
+                                 update=":mForm:uList"
+                                 style="text-align: center; height: 1.9rem;" 
+                                 action="#{myUserBean.saveUser()}" 
+                                 styleClass="ui-priority-primary" />
             </h:form>
         </div>
 
         <div id="right">
             <h:form id="mForm">
                 <h1>Lista de usuarios</h1>
-                <p:dataTable var="user"  id="uList" value="#{userBean.records}" reflow="true" rows="5" paginator="true">
+                <p:dataTable var="user"  id="uList" value="#{myUserBean.records}" reflow="true" rows="5" paginator="true">
                     <p:column headerText="Id">
                         <h:outputText value="#{user.id}" />
                     </p:column>
@@ -89,11 +103,25 @@
                         <h:outputText value="#{user.name}" />
                     </p:column>
                     <p:column headerText="Celular">
-                        <h:outputText value="#{user.cellPhone}" />
+                        <h:outputText value="#{user.email}" />
                     </p:column>
                     <p:column headerText="Opciones">
-                        <p:commandButton action="#{userBean.deleteUser()}" value="Eliminar" update=":mForm:uList">
-                            <f:setPropertyActionListener target="#{userBean.id}" value="#{user.id}"/>
+                        <p:commandButton 
+                            action="#{myUserBean.deleteUser()}"
+                            value="Eliminar"
+                            update=":mForm:uList">
+                            <f:setPropertyActionListener target="#{myUserBean.id}" value="#{user.id}"/>
+                        </p:commandButton>
+
+                        <p:commandButton
+                            value="Actualizar"
+                            >
+                       
+                            <p:confirm 
+                                header="Confirmation" 
+                                message="Are you sure?" 
+                                icon="pi pi-exclamation-triangle" />
+                            
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>

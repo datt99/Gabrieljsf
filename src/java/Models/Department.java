@@ -26,9 +26,7 @@ public class Department {
     public Department(int id) {
         this.id = id;
     }
-    
-    
-    
+        
     public Department(int id, String name, String description) {
         this.id = id;
         this.name = name;
@@ -58,11 +56,6 @@ public class Department {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
-    
-    
-    
-    
+
     
 }
