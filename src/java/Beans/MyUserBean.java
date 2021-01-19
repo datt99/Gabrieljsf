@@ -77,6 +77,10 @@ public class MyUserBean {
         records = dao.readAllRecords();
     }
     
+    public void deleteUser(){
+        
+    }
+    
     public void deleteTeam() {
         dao.deleteOne(id);
         records = dao.readAllRecords();

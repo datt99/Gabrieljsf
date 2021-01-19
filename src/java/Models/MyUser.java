@@ -1,5 +1,6 @@
 package Models;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "employee", uniqueConstraints = {@UniqueConstraint(name = "email_constraint", columnNames = {"email"})})
-public class MyUser {
+public class MyUser implements Serializable {
     
     
     @Id

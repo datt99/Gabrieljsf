@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5436/usuarios</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">12334</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
-        
-        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
-        <property name="hibernate.c3p0.min_size">2</property>  <!--Mínimo de conexiones activas, de arranque inicia estos, incrementa cuando es necesario-->
-        <property name="hibernate.c3p0.max_size">10</property> <!--Límite máximo de conexiones que se pueden generar-->
-        <property name="hibernate.c3p0.timeout">100</property> <!--Tiempo de espera-->
-        <property name="hibernate.c3p0.max_statements">50</property> <!--Máximo de statements en caché (prepared statement creados)-->
-        <property name="hibernate.c3p0.idle_test_period">1000</property>
-        <property name="hibernate.c3p0.validate">true</property>
-        
-        <mapping class="Models.User"/>
-        <mapping class="Models.Department"/>
-        <mapping class="Models.UserCredentials"/>   
-        
-        <mapping class="Models.MyUser"/>
-        <mapping class="Models.Team"/>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/daniel</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">123456</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hbm2ddl.auto">update</property>
+    <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+    <property name="hibernate.c3p0.min_size">2</property>
+    <!--Mínimo de conexiones activas, de arranque inicia estos, incrementa cuando es necesario-->
+    <property name="hibernate.c3p0.max_size">20</property>
+    <!--Límite máximo de conexiones que se pueden generar-->
+    <property name="hibernate.c3p0.timeout">100</property>
+    <!--Tiempo de espera-->
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <!--Máximo de statements en caché (prepared statement creados)-->
+    <property name="hibernate.c3p0.idle_test_period">1000</property>
+    <property name="hibernate.c3p0.validate">true</property>
+    <mapping class="Models.MyUser"/>
+    <mapping class="Models.Team"/>
+  </session-factory>
 </hibernate-configuration>

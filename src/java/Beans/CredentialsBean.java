@@ -1,7 +1,7 @@
 package Beans;
 
 import Dao.CredentialsDao;
-import Models.UserCredentials;
+import Models.MyUser;
 import java.io.IOException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author alsorc
+ * @author Daniel
 */
 @ManagedBean(name = "credentialsBean")
 @RequestScoped
@@ -49,16 +49,14 @@ public class CredentialsBean {
  
     
     public String login(){
-        System.out.println("HOLAA");
         return dao.validateUser(username, password);
     }
     
     public void validateSession() throws IOException{
-        UserCredentials user = (UserCredentials) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        MyUser user = (MyUser) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         if(user == null){
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }
-    
     }
     
     
